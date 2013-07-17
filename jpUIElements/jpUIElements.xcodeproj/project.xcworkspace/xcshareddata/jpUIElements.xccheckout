@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2A6CA76A-3A8C-4C82-94ED-82D1D701203F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>jpUIElements</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>608DBC31-EDEF-4AAD-9E4A-B20F64F9D35E</key>
+		<string>https://github.com/patinoart/jpOFApps</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>jpUIElements/jpUIElements.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>608DBC31-EDEF-4AAD-9E4A-B20F64F9D35E</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/patinoart/jpOFApps</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>608DBC31-EDEF-4AAD-9E4A-B20F64F9D35E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>608DBC31-EDEF-4AAD-9E4A-B20F64F9D35E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>jpOFApps</string>
+		</dict>
+	</array>
+</dict>
+</plist>
