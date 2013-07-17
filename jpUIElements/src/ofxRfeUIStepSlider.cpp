@@ -20,7 +20,7 @@ void ofxRfeUIStepSlider::setup(string _buttonName, float _x, float _y, float _w,
     minValue = _min;
     maxValue = _max;
     
-    value = 1;
+    value = 0;
     
     buttonLabel.loadFont("MavenPro-Regular.ttf", 24);
     
@@ -95,7 +95,7 @@ void ofxRfeUIStepSlider::moveSlider(float _x, float _y) {
                 //variableW = ofMap(_x, x, x+constantW, 0, constantW);
                 //value = ofMap(variableW, 0, constantW, minValue, maxValue);
                 int stepper = constantW/maxValue;
-                variableW = (int)(_x/stepper)*stepper+stepper;
+                variableW = (int)(_x/stepper)*stepper;
                 value = (int)ofMap(variableW, 0, constantW, minValue, maxValue);
                 //cout << "Slider On" << endl;
                 cout << "Variable Width: " << variableW << endl;
