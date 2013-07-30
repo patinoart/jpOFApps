@@ -63,7 +63,7 @@ void ofxRfeUISlider::draw() {
     ofSetColor(highlightColor);
     ofRect(x, y, variableW, h);
     ofSetColor(255);
-    buttonLabel.drawString(buttonLabelName, x+20, y+h-(buttonLabel.stringHeight(buttonLabelName))+5);
+    buttonLabel.drawString(buttonLabelName+": "+ofToString(value), x+20, y+h-(buttonLabel.stringHeight(buttonLabelName))+5);
     ofPopStyle();
 }
 

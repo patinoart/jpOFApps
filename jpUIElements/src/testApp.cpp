@@ -3,8 +3,11 @@
 //--------------------------------------------------------------
 void testApp::setup(){
     
-    ofBackground(127);
+    //ofBackground(127);
+    ofEnableAlphaBlending();
+    ofSetVerticalSync(true);
     ofSetCircleResolution(100);
+    ofEnableSmoothing();
     
     // setup colors
     cNormal.setHex(0x000000);
@@ -14,7 +17,7 @@ void testApp::setup(){
     // Button Setup
     bSize.set(300, 50);
     bPos.set(50, 50);
-    buttonLabel = "I'M A BUTTON";
+    buttonLabel = "CLEAR BUTTON";
     button1.setup(buttonLabel, bPos.x, bPos.y, bSize.x, bSize.y);
     button1.style(cNormal, cHilite, cLabel);
     b1Click = false;
@@ -22,15 +25,15 @@ void testApp::setup(){
     // float Slider setup
     fSSize.set(500, 50);
     fSPos.set(50, 150);
-    fLabel = "FLOAT SLIDER";
+    fLabel = "PATTERN SPEED";
     fSMove = false;
-    fSlider.setup(fLabel, fSPos.x, fSPos.y, fSSize.x, fSSize.y, 0.0f, 1.0f);
+    fSlider.setup(fLabel, fSPos.x, fSPos.y, fSSize.x, fSSize.y, 0.0f, 3.0f);
     fSlider.style(cNormal, cHilite, cLabel);
     
     // int slider setup
     iSSize = fSSize;
     iSPos.set(50, 250);
-    iLabel = "INTEGER";
+    iLabel = "TAIL LENGTH";
     iSMove = false;
     iSlider.setup(iLabel, iSPos.x, iSPos.y, iSSize.x, iSSize.y, 0, 10);
     iSlider.style(cNormal, cHilite, cLabel);
@@ -38,17 +41,17 @@ void testApp::setup(){
     // dropdown menu setup
     ddSize = iSSize;
     ddPos.set(50, 350);
-    list.push_back("ITEM ONE");
-    list.push_back("ITEM TWO");
-    list.push_back("ITEM THREE");
-    list.push_back("ITEM FOUR");
-    list.push_back("ITEM FIVE");
+    list.push_back("PATTERN ONE");
+    list.push_back("PATTERN TWO");
+    list.push_back("PATTERN THREE");
+    list.push_back("PATTERN FOUR");
+    list.push_back("PATTERN FIVE");
     ddString = "CHOOSE ONE";
     bDDClick = false;
     dropdown.setup("SELECT", ddPos.x, ddPos.y, ddSize.x, ddSize.y);
     dropdown.style(cNormal, cHilite, cLabel);
     dropdown.loadItems(list);
-    dropdown.itemNameSelected = ddString;
+    dropdown.itemNameSelected = ddString;    
 
 }
 
@@ -66,11 +69,68 @@ void testApp::update(){
     
     // dropdown menu update
     dropdown.update(bDDClick, user);
+    
+    if (ddString == list.at(0)) {
+        newX = 1;
+        newY = 32;
+    } else if (ddString == list.at(1)) {
+        newX = 2;
+        newY = 16;
+    } else if (ddString == list.at(2)) {
+        newX = 4;
+        newY = 8;
+    } else if (ddString == list.at(3)) {
+        newX = 8;
+        newY = 4;
+    } else if (ddString == list.at(4)) {
+        newX = 16;
+        newY = 2;
+    } else {
+        newX = 1;
+        newY = 1;
+    }
 
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
+    
+    ofBackgroundGradient(ofColor(127), ofColor(0), OF_GRADIENT_CIRCULAR);
+    
+    // draw Lissajous pattern
+    float xorig = ofGetWidth()*0.5f;
+	float yorig = ofGetHeight()*0.5f;
+	float angle = ofGetElapsedTimef()*fSlider.value;
+	float radius = ofGetHeight()*0.5f;
+	float x = xorig + radius * cos(angle * newX);
+	float y = yorig + radius * -sin(angle * newY);
+    int tailEnd = 100 * iSlider.value;
+	
+	ofPoint temp;
+	temp.x = x;
+	temp.y = y;
+	points.push_back(temp);
+	if (points.size() > tailEnd){
+		points.erase(points.begin());
+	}
+	
+	
+	ofSetRectMode(OF_RECTMODE_CENTER);
+	ofSetColor(255,0,127);
+	ofFill();
+	ofCircle(x,y,10);
+	
+	ofSetColor(255,255,255);
+	
+	ofNoFill();
+	ofBeginShape();
+	for (int i = 0; i < points.size(); i++){
+		ofVertex(points[i].x, points[i].y);
+	}
+	ofEndShape();
+    
+    ofFill();
+    ofSetRectMode(OF_RECTMODE_CORNER);
     
     // Button draw
     button1.draw();
@@ -154,6 +214,9 @@ void testApp::mouseReleased(int x, int y, int button){
     if (button1.bisHit) {
         // do something
         cout << "button1 Hit" << endl;
+        for (int i = 0; i < points.size(); i += 1) {
+            points.erase(points.begin(), points.end());
+        }
     }
     
     // float slider

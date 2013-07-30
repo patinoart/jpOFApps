@@ -67,6 +67,10 @@ class testApp : public ofBaseApp{
         vector <string> list;
         string ddString;
     
+        // Lissajous pattern vector 
+        vector < ofPoint > points;
+        float newX, newY;
+    
     
 		
 };
