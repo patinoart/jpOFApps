@@ -89,17 +89,17 @@ void ofApp::draw(){
     briImg.draw(0, camH*2, camW, camH);
     
     //grayscale angle image
-    for (int i = 0; i < camW; i += 10) {
-        for (int j = 0; j < camH; j += 10) {
+    for (int i = 0; i < camW; i += 8) {
+        for (int j = 0; j < camH; j += 8) {
             int pixelVal = pixels[j*camW+i];
             
             float angle = ofMap(pixelVal, 0, 255, 0, 180);
             
             ofPushMatrix();
             ofSetRectMode(OF_RECTMODE_CENTER);
-            ofTranslate(i + camW, j + camH*2);
+            ofTranslate(i + camW+5, 5+j + camH*2);
             ofRotateZ(angle);
-            ofRect(0, 0, 10, 2);
+            ofRect(0, 0, 8, 2);
             ofSetRectMode(OF_RECTMODE_CORNER);
             ofPopMatrix();
         }
